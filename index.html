@@ -3,7 +3,11 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="AI CodeX — an AI-first workspace for generating, explaining and improving code.">
-<title>AI CodeX — Build with AI</title><link rel="stylesheet" href="styles.css">
+<meta name="theme-color" content="#0b0e14">
+<title>AI CodeX — Build with AI</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="app">
@@ -25,7 +29,7 @@
 <div class="editor-wrap" id="editorWrap">
 <div class="editor-head"><div class="tabs"><button class="tab active">index.html <span>×</span></button></div><div class="editor-actions"><button id="copyBtn">Copy</button><button id="previewBtn">Preview</button></div></div>
 <div class="editor-body"><div class="lines" id="lines"></div><textarea id="code" spellcheck="false"></textarea></div>
-<div class="preview" id="preview"><div class="preview-head"><span>Live Preview</span><button id="closePreview">×</button></div><iframe id="frame"></iframe></div>
+<div class="preview" id="preview"><div class="preview-head"><span>Live Preview</span><button id="closePreview">×</button></div><iframe id="frame" sandbox="allow-scripts allow-forms allow-modals"></iframe></div>
 <div class="bottom"><span>AI CodeX</span><span id="langStatus">HTML</span><span>UTF-8</span></div>
 </div>
 </section>
