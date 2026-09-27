@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="AI CodeX — an AI-first workspace for generating, explaining and improving code.">
+<title>AI CodeX — Build with AI</title><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+<div class="brand"><div class="logo">&lt;/&gt;</div><div><strong>AI CodeX</strong><span>AI coding workspace</span></div></div>
+<button class="new-chat" id="newChat">＋ New project</button>
+<nav><button class="nav active">⌘ <span>Workspace</span></button><button class="nav">◫ <span>Projects</span></button><button class="nav">⌕ <span>Search</span></button></nav>
+<div class="recent"><p>RECENT</p><button>Landing page</button><button>Python API</button><button>React dashboard</button></div>
+<div class="profile"><div class="avatar">S</div><div><b>Developer</b><span>Free workspace</span></div><button>•••</button></div>
+</aside>
+<main>
+<header><div class="mobile-brand">&lt;/&gt; <b>AI CodeX</b></div><div class="status"><i></i> AI ready</div><div class="header-actions"><button id="themeBtn">◐</button><button class="share">Share</button></div></header>
+<section class="workspace">
+<div class="hero" id="hero"><div class="spark">✦</div><h1>What do you want to build?</h1><p>Describe an idea. AI CodeX turns it into clean, editable code.</p>
+<div class="promptbox"><textarea id="prompt" placeholder="Build a modern portfolio website with a dark theme..." rows="3"></textarea>
+<div class="promptbar"><div><select id="language"><option>HTML / CSS / JS</option><option>Python</option><option>JavaScript</option><option>TypeScript</option><option>React</option><option>Java</option><option>C++</option><option>SQL</option></select><button id="attach">＋</button></div><button class="generate" id="generate">Generate <span>↑</span></button></div></div>
+<div class="suggestions"><button data-prompt="Create a responsive SaaS landing page">◫ Build a website</button><button data-prompt="Create a Python REST API starter">⌘ Write Python</button><button data-prompt="Explain the code in the editor step by step">◎ Explain code</button><button data-prompt="Improve and refactor the code in the editor">✦ Improve code</button></div>
+</div>
+<div class="editor-wrap" id="editorWrap">
+<div class="editor-head"><div class="tabs"><button class="tab active">index.html <span>×</span></button></div><div class="editor-actions"><button id="copyBtn">Copy</button><button id="previewBtn">Preview</button></div></div>
+<div class="editor-body"><div class="lines" id="lines"></div><textarea id="code" spellcheck="false"></textarea></div>
+<div class="preview" id="preview"><div class="preview-head"><span>Live Preview</span><button id="closePreview">×</button></div><iframe id="frame"></iframe></div>
+<div class="bottom"><span>AI CodeX</span><span id="langStatus">HTML</span><span>UTF-8</span></div>
+</div>
+</section>
+</main></div>
+<script src="app.js"></script></body></html>
