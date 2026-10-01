@@ -60,7 +60,7 @@ export function createApp({ env = process.env, client, rateLimit = 20 } = {}) {
       console.error('AI generation failed', { status: error.status, code: error.code, name: error.name });
       let status = 502, message = 'AI provider is unavailable. Please try again.';
       if (error.status === 401) { status = 503; message = 'The server AI key is invalid. The owner must update it.'; }
-      else if (error.status === 429) { status = 429; message = error.code === 'insufficient_quota' ? 'The AI provider balance or quota is exhausted. The owner must check API billing.' : 'The AI provider is busy. Try again shortly.'; }
+      else if (error.status === 429) { status = 429; message = ['insufficient_quota', 'credit_balance_exhausted'].includes(error.code) ? 'The AI provider balance or quota is exhausted. The owner must check API billing.' : 'The AI provider is busy. Try again shortly.'; }
       else if (error.status === 404 || error.status === 400) { status = 503; message = 'The configured AI model or request is unavailable. The owner must check OPENAI_MODEL.'; }
       else if (error.name === 'APIConnectionTimeoutError') { status = 504; message = 'AI took too long. Try a smaller request.'; }
       res.status(status).json({ error: message });
