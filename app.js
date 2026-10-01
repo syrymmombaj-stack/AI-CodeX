@@ -72,3 +72,5 @@ $('#installBtn').onclick = async () => { if (!installEvent) return; await instal
 window.addEventListener('appinstalled', () => $('#installBtn').hidden = true);
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js').catch(() => {});
 renderLines(); renderProjects(); health();
+
+window.openSampleProject = html => { if (busy) return false; language.value = 'HTML / CSS / JS'; promptEl.value = 'Sample project: creative studio landing page'; projectId = null; code.value = html; showCode(); preview(); notice('Opened a handcrafted sample, not AI-generated output. No credits used.'); return true; };

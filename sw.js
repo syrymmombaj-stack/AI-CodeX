@@ -1,5 +1,5 @@
-const CACHE = 'ai-codex-v3';
-const SHELL = ['./', './index.html', './styles.css', './app.js', './favicon.svg', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
+const CACHE = 'ai-codex-v4';
+const SHELL = ['./', './index.html', './styles.css', './app.js', './portfolio.js', './favicon.svg', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', event => { event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', event => { event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith('ai-codex-') && key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim())); });
 self.addEventListener('fetch', event => {

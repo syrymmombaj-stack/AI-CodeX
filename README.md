@@ -23,3 +23,7 @@ Projects and theme are saved in this browser's local storage; they do not sync a
 ## Validation
 
 `npm test` checks startup without secrets, protected server files, validation, provider failure handling, empty/truncated results, origin rules, access tokens and rate limits. Real provider calls need a configured API key and balance.
+
+## Portfolio demo accounts and billing
+
+The portfolio UI has email/name registration, sign-in, a local credit balance, three illustrative credit packages, a simulated checkout and a credit activity history. New demo accounts receive 25 demo credits. No passwords are collected for demo accounts; sign-in merely selects a locally saved profile and is not secure authentication. Accounts and balances are stored only in this browser. No payment gateway or financial transactions are connected. Demo credits do not authorize or fund real AI calls. A handcrafted sample project demonstrates editing and preview without a provider call. Production accounts, billing, payment verification and credit metering require a database and server-side implementation.

@@ -66,7 +66,7 @@ export function createApp({ env = process.env, client, rateLimit = 20 } = {}) {
       res.status(status).json({ error: message });
     }
   });
-  const files = ['index.html', 'app.js', 'styles.css', 'favicon.svg', 'manifest.webmanifest', 'sw.js', 'icon-192.png', 'icon-512.png'];
+  const files = ['index.html', 'app.js', 'portfolio.js', 'styles.css', 'favicon.svg', 'manifest.webmanifest', 'sw.js', 'icon-192.png', 'icon-512.png'];
   app.get('/', (_req, res) => res.sendFile(path.join(root, 'index.html')));
   for (const file of files) app.get(`/${file}`, (_req, res) => { if (file === 'sw.js') res.set('Cache-Control', 'no-cache'); res.sendFile(path.join(root, file)); });
   app.use((req, res) => req.path.startsWith('/api/') ? res.status(404).json({ error: 'API endpoint not found.' }) : res.sendStatus(404));
