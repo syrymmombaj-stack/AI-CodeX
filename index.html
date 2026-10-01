@@ -6,7 +6,8 @@
 <meta name="theme-color" content="#0b0e14">
 <title>AI CodeX — Build with AI</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,24 +15,27 @@
 <aside class="sidebar">
 <div class="brand"><div class="logo">&lt;/&gt;</div><div><strong>AI CodeX</strong><span>AI coding workspace</span></div></div>
 <button class="new-chat" id="newChat">＋ New project</button>
-<nav><button class="nav active">⌘ <span>Workspace</span></button><button class="nav">◫ <span>Projects</span></button><button class="nav">⌕ <span>Search</span></button></nav>
-<div class="recent"><p>RECENT</p><button>Landing page</button><button>Python API</button><button>React dashboard</button></div>
-<div class="profile"><div class="avatar">S</div><div><b>Developer</b><span>Free workspace</span></div><button>•••</button></div>
+<nav><button class="nav active" id="workspaceBtn">⌘ <span>Workspace</span></button><button class="nav" id="projectsBtn">◫ <span>Projects</span></button></nav>
+<div class="recent"><p>SAVED ON THIS DEVICE</p><div id="projectList"></div></div>
+<div class="profile"><div class="avatar">S</div><div><b>Developer</b><span>Free workspace</span></div><button id="settingsBtn" aria-label="Settings">⚙</button></div>
 </aside>
 <main>
-<header><div class="mobile-brand">&lt;/&gt; <b>AI CodeX</b></div><div class="status"><i></i> AI ready</div><div class="header-actions"><button id="themeBtn">◐</button><button class="share">Share</button></div></header>
+<header><div class="mobile-brand">&lt;/&gt; <b>AI CodeX</b></div><div class="status" id="serviceStatus" role="status">Checking AI…</div><div class="header-actions"><button id="themeBtn">◐</button><button id="installBtn" hidden>Install app</button><button id="mobileProjects">Projects</button><button id="mobileSettings" aria-label="Settings">⚙</button></div></header>
 <section class="workspace">
 <div class="hero" id="hero"><div class="spark">✦</div><h1>What do you want to build?</h1><p>Describe an idea. AI CodeX turns it into clean, editable code.</p>
-<div class="promptbox"><textarea id="prompt" placeholder="Build a modern portfolio website with a dark theme..." rows="3"></textarea>
-<div class="promptbar"><div><select id="language"><option>HTML / CSS / JS</option><option>Python</option><option>JavaScript</option><option>TypeScript</option><option>React</option><option>Java</option><option>C++</option><option>SQL</option></select><button id="attach">＋</button></div><button class="generate" id="generate">Generate <span>↑</span></button></div></div>
-<div class="suggestions"><button data-prompt="Create a responsive SaaS landing page">◫ Build a website</button><button data-prompt="Create a Python REST API starter">⌘ Write Python</button><button data-prompt="Explain the code in the editor step by step">◎ Explain code</button><button data-prompt="Improve and refactor the code in the editor">✦ Improve code</button></div>
+<div class="promptbox"><textarea id="prompt" maxlength="8000" aria-label="Describe your request" placeholder="Build a modern portfolio website with a dark theme..." rows="3"></textarea>
+<div class="promptbar"><div><select id="language" aria-label="Programming language"><option>HTML / CSS / JS</option><option>Python</option><option>JavaScript</option><option>TypeScript</option><option>React</option><option>Java</option><option>C++</option><option>SQL</option></select><select id="mode" aria-label="Action"><option value="generate">Generate</option><option value="improve">Improve</option><option value="debug">Debug</option><option value="explain">Explain</option></select><button id="attach" title="Import code">＋</button><input type="file" id="fileInput" hidden accept=".html,.css,.js,.ts,.tsx,.jsx,.py,.java,.cpp,.sql,.txt"></div><button class="generate" id="generate">Generate <span>↑</span></button></div></div>
+<p id="notice" role="status" aria-live="polite"></p><div class="suggestions"><button data-prompt="Create a responsive SaaS landing page">◫ Build a website</button><button data-prompt="Create a Python REST API starter">⌘ Write Python</button><button data-prompt="Explain the code in the editor step by step">◎ Explain code</button><button data-prompt="Improve and refactor the code in the editor">✦ Improve code</button></div>
 </div>
 <div class="editor-wrap" id="editorWrap">
-<div class="editor-head"><div class="tabs"><button class="tab active">index.html <span>×</span></button></div><div class="editor-actions"><button id="copyBtn">Copy</button><button id="previewBtn">Preview</button></div></div>
-<div class="editor-body"><div class="lines" id="lines"></div><textarea id="code" spellcheck="false"></textarea></div>
+<div class="editor-head"><div class="tabs"><button class="tab active" id="fileTab">index.html</button></div><div class="editor-actions"><button id="backBtn">Prompt</button><button id="saveBtn">Save</button><button id="downloadBtn">Export</button><button id="copyBtn">Copy</button><button id="previewBtn">Preview</button></div></div>
+<div class="editor-body"><div class="lines" id="lines"></div><textarea id="code" aria-label="Code editor" spellcheck="false"></textarea></div>
 <div class="preview" id="preview"><div class="preview-head"><span>Live Preview</span><button id="closePreview">×</button></div><iframe id="frame" sandbox="allow-scripts allow-forms allow-modals"></iframe></div>
 <div class="bottom"><span>AI CodeX</span><span id="langStatus">HTML</span><span>UTF-8</span></div>
 </div>
 </section>
 </main></div>
+<dialog id="projectsDialog"><h2>Your projects</h2><p>Saved in this browser. Export important code to keep a backup.</p><div id="allProjects"></div><button id="closeProjects">Close</button></dialog>
+<dialog id="settingsDialog"><h2>Workspace settings</h2><label>Backend URL (leave empty for this server)<input id="apiUrl" type="url" placeholder="https://your-backend.example"></label><label>Workspace access token (optional)<input id="accessToken" type="password" autocomplete="off"></label><p>Enter only a workspace token here. Your OpenAI API key belongs on the server.</p><button id="saveSettings">Save</button><button id="closeSettings">Cancel</button></dialog>
+<dialog id="explanationDialog"><h2>Code explanation</h2><pre id="explanation"></pre><button id="closeExplanation">Close</button></dialog>
 <script src="app.js"></script></body></html>
