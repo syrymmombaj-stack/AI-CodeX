@@ -17,7 +17,10 @@ export function createApp({ env = process.env, client, rateLimit = 20 } = {}) {
   app.use((_req, res, next) => { res.set('X-Content-Type-Options', 'nosniff'); res.set('Referrer-Policy', 'no-referrer'); next(); });
   app.use((req, res, next) => {
     const origin = req.get('origin');
-    if (origin && origin !== `${req.protocol}://${req.get('host')}` && !origins.includes(origin))
+    // Render terminates HTTPS before forwarding HTTP to Node. Allow the
+    // HTTPS origin for this exact host without trusting arbitrary proxy headers.
+    const sameHostOrigins = [`${req.protocol}://${req.get('host')}`, `https://${req.get('host')}`];
+    if (origin && !sameHostOrigins.includes(origin) && !origins.includes(origin))
       return res.status(403).json({ error: 'This origin is not allowed.' });
     next();
   });
